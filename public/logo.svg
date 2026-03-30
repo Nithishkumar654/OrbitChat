@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+
+  <!-- Orbit ring -->
+  <ellipse
+    cx="32" cy="32"
+    rx="21" ry="10"
+    stroke="white" stroke-width="2.4" fill="none" opacity="0.78"
+    transform="rotate(-30 32 32)"
+  />
+
+  <!-- Central hub -->
+  <circle cx="32" cy="32" r="5.5" fill="white"/>
+
+  <!-- Satellite / chat node -->
+  <circle cx="40.5" cy="19" r="5" fill="white" opacity="0.95"/>
+
+  <!-- Trailing dot -->
+  <circle cx="49.5" cy="25.5" r="2.2" fill="white" opacity="0.45"/>
+</svg>
