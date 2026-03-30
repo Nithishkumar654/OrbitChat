@@ -22,7 +22,7 @@ function ForgotPass() {
     setErr("");
     setUser(obj.userid);
     axios
-      .post("http://localhost:3500/user-api/sendemail", obj)
+      .post("https://orbitchat-38y6.onrender.com/user-api/sendemail", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -48,7 +48,7 @@ function ForgotPass() {
     obj.token = localStorage.getItem("otpToken");
     obj.hashedOtp = localStorage.getItem("hashedOtp");
     axios
-      .post("http://localhost:3500/user-api/verifyotp", obj)
+      .post("https://orbitchat-38y6.onrender.com/user-api/verifyotp", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -70,7 +70,7 @@ function ForgotPass() {
     setErr("");
     obj.userid = user;
     axios
-      .post("http://localhost:3500/user-api/update-password", obj)
+      .post("https://orbitchat-38y6.onrender.com/user-api/update-password", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -109,7 +109,8 @@ function ForgotPass() {
           width: 400,
           height: 400,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(124,58,237,0.2), transparent)",
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.2), transparent)",
           filter: "blur(80px)",
           animation: "orbPulse 7s ease-in-out infinite",
           pointerEvents: "none",
@@ -127,7 +128,9 @@ function ForgotPass() {
       >
         {/* Step indicator */}
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div className="logo-mark" style={{ margin: "0 auto 20px" }}>C</div>
+          <div className="logo-mark" style={{ margin: "0 auto 20px" }}>
+            C
+          </div>
 
           <div className="step-indicator">
             {steps.map((s, i) => (
@@ -254,17 +257,23 @@ function ForgotPass() {
                   type="number"
                   className="input-glass"
                   placeholder="Enter the 6-digit OTP"
-                  style={{ letterSpacing: "4px", textAlign: "center", fontSize: "20px !important" }}
+                  style={{
+                    letterSpacing: "4px",
+                    textAlign: "center",
+                    fontSize: "20px !important",
+                  }}
                   {...register("otp", { required: true })}
                 />
-                <div className="form-hint">
-                  OTP expires in 5 minutes
-                </div>
+                <div className="form-hint">OTP expires in 5 minutes</div>
               </div>
               <SubmitBtn loading={loading} label="Verify OTP →" />
               <button
                 type="button"
-                onClick={() => { setStep(0); reset(); setErr(""); }}
+                onClick={() => {
+                  setStep(0);
+                  reset();
+                  setErr("");
+                }}
                 style={{
                   width: "100%",
                   marginTop: 10,
@@ -297,12 +306,18 @@ function ForgotPass() {
                     type="button"
                     onClick={() => setShow(!show)}
                     style={{
-                      position: "absolute", right: 14, top: "50%",
+                      position: "absolute",
+                      right: 14,
+                      top: "50%",
                       transform: "translateY(-50%)",
-                      background: "none", border: "none",
+                      background: "none",
+                      border: "none",
                       color: "var(--color-text-muted)",
-                      cursor: "pointer", display: "flex", alignItems: "center",
-                      fontSize: 18, padding: 0,
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      fontSize: 18,
+                      padding: 0,
                     }}
                   >
                     {show ? <BiHide /> : <BiShow />}
@@ -322,26 +337,50 @@ function ForgotPass() {
                     type="button"
                     onClick={() => setRepeatShow(!repeatShow)}
                     style={{
-                      position: "absolute", right: 14, top: "50%",
+                      position: "absolute",
+                      right: 14,
+                      top: "50%",
                       transform: "translateY(-50%)",
-                      background: "none", border: "none",
+                      background: "none",
+                      border: "none",
                       color: "var(--color-text-muted)",
-                      cursor: "pointer", display: "flex", alignItems: "center",
-                      fontSize: 18, padding: 0,
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      fontSize: 18,
+                      padding: 0,
                     }}
                   >
                     {repeatShow ? <BiHide /> : <BiShow />}
                   </button>
                 </div>
               </div>
-              <SubmitBtn loading={loading} label="Update Password →" color="linear-gradient(135deg,#22c55e,#06b6d4)" />
+              <SubmitBtn
+                loading={loading}
+                label="Update Password →"
+                color="linear-gradient(135deg,#22c55e,#06b6d4)"
+              />
             </form>
           )}
         </div>
 
-        <p style={{ textAlign: "center", marginTop: 20, color: "var(--color-text-muted)", fontSize: 13 }}>
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: 20,
+            color: "var(--color-text-muted)",
+            fontSize: 13,
+          }}
+        >
           Remembered it?{" "}
-          <NavLink to="/login" style={{ color: "#a78bfa", fontWeight: 600, textDecoration: "none" }}>
+          <NavLink
+            to="/login"
+            style={{
+              color: "#a78bfa",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
             Back to Sign In
           </NavLink>
         </p>
@@ -350,7 +389,11 @@ function ForgotPass() {
   );
 }
 
-function SubmitBtn({ loading, label, color = "linear-gradient(135deg,#7c3aed,#06b6d4)" }) {
+function SubmitBtn({
+  loading,
+  label,
+  color = "linear-gradient(135deg,#7c3aed,#06b6d4)",
+}) {
   return (
     <button
       type="submit"
@@ -372,7 +415,14 @@ function SubmitBtn({ loading, label, color = "linear-gradient(135deg,#7c3aed,#06
       }}
     >
       {loading ? (
-        <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+        <span
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+          }}
+        >
           <span
             style={{
               width: 15,
@@ -386,7 +436,9 @@ function SubmitBtn({ loading, label, color = "linear-gradient(135deg,#7c3aed,#06
           />
           Processing...
         </span>
-      ) : label}
+      ) : (
+        label
+      )}
     </button>
   );
 }

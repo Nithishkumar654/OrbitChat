@@ -40,22 +40,31 @@ function Footer({ person, onMessageSent }) {
 
   function submitMessage() {
     const trimmed = value.trimStart();
-    if (!trimmed.length) { setValue(""); return; }
+    if (!trimmed.length) {
+      setValue("");
+      return;
+    }
     setSpin(true);
     const now = new Date();
     const pad = (n) => String(n).padStart(2, "0");
     const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
     axios
-      .post("http://localhost:3500/conversation-api/send-message", {
-        message: trimmed,
-        senderId: host,
-        receiverId: person.userid,
-        time,
-      })
+      .post(
+        "https://orbitchat-38y6.onrender.com/conversation-api/send-message",
+        {
+          message: trimmed,
+          senderId: host,
+          receiverId: person.userid,
+          time,
+        },
+      )
       .then(() => {
         setValue("");
         setSpin(false);
-        socket.emit("message-sent", { senderId: host, receiverId: person.userid });
+        socket.emit("message-sent", {
+          senderId: host,
+          receiverId: person.userid,
+        });
         onMessageSent();
       })
       .catch((err) => {
@@ -70,18 +79,30 @@ function Footer({ person, onMessageSent }) {
     const pad = (n) => String(n).padStart(2, "0");
     const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
     const fd = new FormData();
-    fd.append("details", JSON.stringify({
-      senderId: host, receiverId: person.userid, time, fileName: file.name,
-    }));
+    fd.append(
+      "details",
+      JSON.stringify({
+        senderId: host,
+        receiverId: person.userid,
+        time,
+        fileName: file.name,
+      }),
+    );
     fd.append("file", file);
     axios
-      .post("http://localhost:3500/conversation-api/send-file", fd)
+      .post(
+        "https://orbitchat-38y6.onrender.com/conversation-api/send-file",
+        fd,
+      )
       .then(() => {
         setValue("");
         setSpin(false);
         setDisabled(false);
         setFile(null);
-        socket.emit("message-sent", { senderId: host, receiverId: person.userid });
+        socket.emit("message-sent", {
+          senderId: host,
+          receiverId: person.userid,
+        });
         onMessageSent();
       })
       .catch((err) => {
@@ -122,7 +143,13 @@ function Footer({ person, onMessageSent }) {
         placement="top"
         rootClose
         overlay={
-          <Popover style={{ background: "transparent", border: "none", boxShadow: "none" }}>
+          <Popover
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
+          >
             <EmojiPicker
               onEmojiClick={(emoji) => setValue((v) => v + emoji.emoji)}
               theme="dark"
@@ -154,7 +181,13 @@ function Footer({ person, onMessageSent }) {
             }}
           >
             <Popover.Body style={{ padding: "14px 16px" }}>
-              <div style={{ fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8 }}>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "var(--color-text-muted)",
+                  marginBottom: 8,
+                }}
+              >
                 Choose a file to send
               </div>
               <input
@@ -235,7 +268,11 @@ function Footer({ person, onMessageSent }) {
         title="Send"
       >
         {spin ? (
-          <Spinner animation="border" size="sm" style={{ color: "white", width: 16, height: 16, borderWidth: 2 }} />
+          <Spinner
+            animation="border"
+            size="sm"
+            style={{ color: "white", width: 16, height: 16, borderWidth: 2 }}
+          />
         ) : (
           <AiOutlineSend style={{ fontSize: 16 }} />
         )}

@@ -5,7 +5,16 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import EditProfile from "./EditProfile";
 import socket from "../socket";
 
-function AllChats({ show, setShow, message, setMessage, showPerson, activePerson, summaries = {}, fetchSummaries }) {
+function AllChats({
+  show,
+  setShow,
+  message,
+  setMessage,
+  showPerson,
+  activePerson,
+  summaries = {},
+  fetchSummaries,
+}) {
   const [host, setHost] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
@@ -17,7 +26,7 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
     const currentHost = localStorage.getItem("user");
     setHost(currentHost);
     axios
-      .get("http://localhost:3500/user-api/get-users")
+      .get("https://orbitchat-38y6.onrender.com/user-api/get-users")
       .then((res) => {
         const seen = new Set();
         const contacts = res.data.users.filter((u) => {
@@ -57,7 +66,7 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
       : allUsers.filter(
           (obj) =>
             obj.userid.toLowerCase().includes(lower) ||
-            obj.username.toLowerCase().includes(lower)
+            obj.username.toLowerCase().includes(lower),
         );
     return [...filtered].sort((a, b) => {
       const sa = summaries[a.userid];
@@ -81,10 +90,7 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
   const isOnline = (userid) =>
     !!onlineUsers?.find((u) => u.username === userid);
 
-  const getInitials = (name) =>
-    name ? name.charAt(0).toUpperCase() : "?";
-
-
+  const getInitials = (name) => (name ? name.charAt(0).toUpperCase() : "?");
 
   return (
     <div
@@ -196,7 +202,9 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
       </div>
 
       {/* ── User list ── */}
-      <div style={{ flex: 1, overflowY: "auto", paddingBottom: show ? 64 : 16 }}>
+      <div
+        style={{ flex: 1, overflowY: "auto", paddingBottom: show ? 64 : 16 }}
+      >
         {userids.length === 0 ? (
           <div
             style={{
@@ -209,7 +217,9 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
             {searchVal ? (
               <>
                 <div style={{ fontSize: 30, marginBottom: 10 }}>🔍</div>
-                <div style={{ fontWeight: 600, color: "var(--color-text-subtle)" }}>
+                <div
+                  style={{ fontWeight: 600, color: "var(--color-text-subtle)" }}
+                >
                   No results for "{searchVal}"
                 </div>
                 <div style={{ fontSize: 12, marginTop: 4 }}>
@@ -228,10 +238,7 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
             const active = activePerson?.userid === obj.userid;
             const online = isOnline(obj.userid);
             return (
-              <div
-                key={String(obj._id)}
-                onClick={() => showPerson(obj)}
-              >
+              <div key={String(obj._id)} onClick={() => showPerson(obj)}>
                 <div
                   style={{
                     display: "flex",
@@ -256,7 +263,8 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
                   onMouseEnter={(e) => {
                     if (!active) {
                       e.currentTarget.style.background = "rgba(124,58,237,0.1)";
-                      e.currentTarget.style.borderColor = "rgba(124,58,237,0.18)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(124,58,237,0.18)";
                       e.currentTarget.style.transform = "translateX(3px)";
                     }
                   }}
@@ -283,7 +291,9 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
                       color: "white",
                       flexShrink: 0,
                       position: "relative",
-                      boxShadow: active ? "0 0 0 2px white, 0 0 0 4px rgba(124,58,237,0.6)" : "none",
+                      boxShadow: active
+                        ? "0 0 0 2px white, 0 0 0 4px rgba(124,58,237,0.6)"
+                        : "none",
                       transition: "box-shadow 0.25s",
                     }}
                   >
@@ -357,7 +367,9 @@ function AllChats({ show, setShow, message, setMessage, showPerson, activePerson
                       <div
                         style={{
                           fontSize: 12,
-                          color: active ? "rgba(255,255,255,0.5)" : "var(--color-text-muted)",
+                          color: active
+                            ? "rgba(255,255,255,0.5)"
+                            : "var(--color-text-muted)",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           whiteSpace: "nowrap",

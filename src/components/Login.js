@@ -29,7 +29,8 @@ function AuthIllustration() {
           width: 280,
           height: 280,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(124,58,237,0.3), transparent)",
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.3), transparent)",
           filter: "blur(60px)",
           animation: "orbPulse 6s ease-in-out infinite",
         }}
@@ -42,7 +43,8 @@ function AuthIllustration() {
           width: 200,
           height: 200,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(6,182,212,0.25), transparent)",
+          background:
+            "radial-gradient(circle, rgba(6,182,212,0.25), transparent)",
           filter: "blur(50px)",
           animation: "orbPulse 8s ease-in-out infinite",
           animationDelay: "-3s",
@@ -50,7 +52,13 @@ function AuthIllustration() {
       />
 
       {/* SVG Chat Illustration */}
-      <div style={{ animation: "float 7s ease-in-out infinite", position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          animation: "float 7s ease-in-out infinite",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <svg
           viewBox="0 0 320 280"
           fill="none"
@@ -76,35 +84,133 @@ function AuthIllustration() {
           <circle cx="160" cy="140" r="120" fill="url(#lg1)" opacity="0.06" />
 
           {/* Main bubble (left / received) */}
-          <rect x="24" y="40" width="200" height="88" rx="20" fill="url(#lg1)" opacity="0.85" />
-          <polygon points="44,128 84,128 44,152" fill="url(#lg1)" opacity="0.85" />
+          <rect
+            x="24"
+            y="40"
+            width="200"
+            height="88"
+            rx="20"
+            fill="url(#lg1)"
+            opacity="0.85"
+          />
+          <polygon
+            points="44,128 84,128 44,152"
+            fill="url(#lg1)"
+            opacity="0.85"
+          />
           {/* Text lines */}
-          <rect x="44" y="62" width="110" height="9" rx="4.5" fill="rgba(255,255,255,0.55)" />
-          <rect x="44" y="80" width="150" height="9" rx="4.5" fill="rgba(255,255,255,0.55)" />
-          <rect x="44" y="98" width="90" height="9" rx="4.5" fill="rgba(255,255,255,0.55)" />
+          <rect
+            x="44"
+            y="62"
+            width="110"
+            height="9"
+            rx="4.5"
+            fill="rgba(255,255,255,0.55)"
+          />
+          <rect
+            x="44"
+            y="80"
+            width="150"
+            height="9"
+            rx="4.5"
+            fill="rgba(255,255,255,0.55)"
+          />
+          <rect
+            x="44"
+            y="98"
+            width="90"
+            height="9"
+            rx="4.5"
+            fill="rgba(255,255,255,0.55)"
+          />
 
           {/* Secondary bubble (right / sent) */}
-          <rect x="96" y="166" width="196" height="72" rx="20" fill="url(#lg2)" opacity="0.8" />
-          <polygon points="284,238 260,238 284,258" fill="url(#lg2)" opacity="0.8" />
+          <rect
+            x="96"
+            y="166"
+            width="196"
+            height="72"
+            rx="20"
+            fill="url(#lg2)"
+            opacity="0.8"
+          />
+          <polygon
+            points="284,238 260,238 284,258"
+            fill="url(#lg2)"
+            opacity="0.8"
+          />
           {/* Text lines */}
-          <rect x="116" y="184" width="120" height="8" rx="4" fill="rgba(255,255,255,0.55)" />
-          <rect x="116" y="200" width="88" height="8" rx="4" fill="rgba(255,255,255,0.55)" />
+          <rect
+            x="116"
+            y="184"
+            width="120"
+            height="8"
+            rx="4"
+            fill="rgba(255,255,255,0.55)"
+          />
+          <rect
+            x="116"
+            y="200"
+            width="88"
+            height="8"
+            rx="4"
+            fill="rgba(255,255,255,0.55)"
+          />
 
           {/* Avatar A */}
           <circle cx="44" cy="174" r="22" fill="url(#lg1)" />
-          <text x="44" y="180" textAnchor="middle" fill="white" fontSize="14" fontWeight="700" fontFamily="Inter, sans-serif">A</text>
+          <text
+            x="44"
+            y="180"
+            textAnchor="middle"
+            fill="white"
+            fontSize="14"
+            fontWeight="700"
+            fontFamily="Inter, sans-serif"
+          >
+            A
+          </text>
 
           {/* Avatar B */}
           <circle cx="276" cy="270" r="22" fill="url(#lg2)" />
-          <text x="276" y="276" textAnchor="middle" fill="white" fontSize="14" fontWeight="700" fontFamily="Inter, sans-serif">B</text>
+          <text
+            x="276"
+            y="276"
+            textAnchor="middle"
+            fill="white"
+            fontSize="14"
+            fontWeight="700"
+            fontFamily="Inter, sans-serif"
+          >
+            B
+          </text>
 
           {/* Notification badge */}
           <circle cx="268" cy="46" r="14" fill="#ef4444" />
-          <text x="268" y="51" textAnchor="middle" fill="white" fontSize="10" fontWeight="700" fontFamily="Inter, sans-serif">3</text>
+          <text
+            x="268"
+            y="51"
+            textAnchor="middle"
+            fill="white"
+            fontSize="10"
+            fontWeight="700"
+            fontFamily="Inter, sans-serif"
+          >
+            3
+          </text>
 
           {/* Floating emoji */}
-          <circle cx="240" cy="148" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-          <text x="240" y="154" textAnchor="middle" fontSize="14">🚀</text>
+          <circle
+            cx="240"
+            cy="148"
+            r="16"
+            fill="rgba(255,255,255,0.1)"
+            stroke="rgba(255,255,255,0.2)"
+            strokeWidth="1"
+          />
+          <text x="240" y="154" textAnchor="middle" fontSize="14">
+            🚀
+          </text>
 
           {/* Small decorative dots */}
           <circle cx="18" cy="18" r="5" fill="url(#lg1)" opacity="0.6" />
@@ -114,7 +220,14 @@ function AuthIllustration() {
       </div>
 
       {/* Tagline */}
-      <div style={{ textAlign: "center", marginTop: 24, position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: 24,
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <h2
           style={{
             fontSize: 22,
@@ -128,8 +241,16 @@ function AuthIllustration() {
         >
           OrbitChat
         </h2>
-        <p style={{ color: "var(--color-text-muted)", fontSize: 13, lineHeight: 1.6 }}>
-          Stay in each other's orbit.<br />Real-time messaging, redefined.
+        <p
+          style={{
+            color: "var(--color-text-muted)",
+            fontSize: 13,
+            lineHeight: 1.6,
+          }}
+        >
+          Stay in each other's orbit.
+          <br />
+          Real-time messaging, redefined.
         </p>
       </div>
     </div>
@@ -146,7 +267,7 @@ function Login() {
   function submitLogin(obj) {
     setLoading(true);
     axios
-      .post("http://localhost:3500/user-api/login", obj)
+      .post("https://orbitchat-38y6.onrender.com/user-api/login", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -214,7 +335,9 @@ function Login() {
               marginBottom: 36,
             }}
           >
-            <div className="logo-mark"><OrbitLogo /></div>
+            <div className="logo-mark">
+              <OrbitLogo />
+            </div>
             <span
               style={{
                 fontWeight: 800,
@@ -354,11 +477,20 @@ function Login() {
                 cursor: loading ? "not-allowed" : "pointer",
                 transition: "all 0.3s",
                 animation: loading ? "none" : "gradientShift 3s ease infinite",
-                boxShadow: loading ? "none" : "0 8px 32px rgba(124,58,237,0.35)",
+                boxShadow: loading
+                  ? "none"
+                  : "0 8px 32px rgba(124,58,237,0.35)",
               }}
             >
               {loading ? (
-                <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
                   <span
                     style={{
                       width: 16,
@@ -389,7 +521,11 @@ function Login() {
             Don't have an account?{" "}
             <NavLink
               to="/register"
-              style={{ color: "#a78bfa", fontWeight: 600, textDecoration: "none" }}
+              style={{
+                color: "#a78bfa",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
             >
               Create one →
             </NavLink>

@@ -27,7 +27,8 @@ function RegisterIllustration() {
           width: 300,
           height: 300,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(236,72,153,0.25), transparent)",
+          background:
+            "radial-gradient(circle, rgba(236,72,153,0.25), transparent)",
           filter: "blur(70px)",
           animation: "orbPulse 7s ease-in-out infinite",
         }}
@@ -40,14 +41,21 @@ function RegisterIllustration() {
           width: 220,
           height: 220,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(124,58,237,0.2), transparent)",
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.2), transparent)",
           filter: "blur(55px)",
           animation: "orbPulse 9s ease-in-out infinite",
           animationDelay: "-4s",
         }}
       />
 
-      <div style={{ animation: "float2 8s ease-in-out infinite", position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          animation: "float2 8s ease-in-out infinite",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <svg
           viewBox="0 0 320 300"
           fill="none"
@@ -73,36 +81,127 @@ function RegisterIllustration() {
           <circle cx="160" cy="150" r="130" fill="url(#rg1)" opacity="0.05" />
 
           {/* Profile card */}
-          <rect x="80" y="30" width="160" height="200" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+          <rect
+            x="80"
+            y="30"
+            width="160"
+            height="200"
+            rx="20"
+            fill="rgba(255,255,255,0.05)"
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="1"
+          />
 
           {/* Avatar circle */}
           <circle cx="160" cy="95" r="36" fill="url(#rg1)" />
-          <text x="160" y="102" textAnchor="middle" fill="white" fontSize="22" fontWeight="800" fontFamily="Inter, sans-serif">U</text>
+          <text
+            x="160"
+            y="102"
+            textAnchor="middle"
+            fill="white"
+            fontSize="22"
+            fontWeight="800"
+            fontFamily="Inter, sans-serif"
+          >
+            U
+          </text>
 
           {/* Online dot */}
-          <circle cx="188" cy="70" r="10" fill="#22c55e" stroke="rgba(6,6,15,0.8)" strokeWidth="3" />
+          <circle
+            cx="188"
+            cy="70"
+            r="10"
+            fill="#22c55e"
+            stroke="rgba(6,6,15,0.8)"
+            strokeWidth="3"
+          />
 
           {/* Name line */}
-          <rect x="106" y="148" width="108" height="10" rx="5" fill="rgba(255,255,255,0.4)" />
+          <rect
+            x="106"
+            y="148"
+            width="108"
+            height="10"
+            rx="5"
+            fill="rgba(255,255,255,0.4)"
+          />
           {/* Info lines */}
-          <rect x="110" y="170" width="100" height="7" rx="3.5" fill="rgba(255,255,255,0.2)" />
-          <rect x="118" y="186" width="84" height="7" rx="3.5" fill="rgba(255,255,255,0.15)" />
+          <rect
+            x="110"
+            y="170"
+            width="100"
+            height="7"
+            rx="3.5"
+            fill="rgba(255,255,255,0.2)"
+          />
+          <rect
+            x="118"
+            y="186"
+            width="84"
+            height="7"
+            rx="3.5"
+            fill="rgba(255,255,255,0.15)"
+          />
 
           {/* Action button */}
-          <rect x="106" y="206" width="108" height="14" rx="7" fill="url(#rg2)" opacity="0.8" />
+          <rect
+            x="106"
+            y="206"
+            width="108"
+            height="14"
+            rx="7"
+            fill="url(#rg2)"
+            opacity="0.8"
+          />
 
           {/* Floating bubbles */}
           <circle cx="40" cy="70" r="18" fill="url(#rg2)" opacity="0.7" />
-          <text x="40" y="76" textAnchor="middle" fill="white" fontSize="12" fontFamily="Inter">✓</text>
+          <text
+            x="40"
+            y="76"
+            textAnchor="middle"
+            fill="white"
+            fontSize="12"
+            fontFamily="Inter"
+          >
+            ✓
+          </text>
 
           <circle cx="280" cy="90" r="16" fill="url(#rg1)" opacity="0.7" />
-          <text x="280" y="96" textAnchor="middle" fill="white" fontSize="12" fontFamily="Inter">✉</text>
+          <text
+            x="280"
+            y="96"
+            textAnchor="middle"
+            fill="white"
+            fontSize="12"
+            fontFamily="Inter"
+          >
+            ✉
+          </text>
 
           <circle cx="42" cy="200" r="14" fill="url(#rg3)" opacity="0.7" />
-          <text x="42" y="205" textAnchor="middle" fill="white" fontSize="11" fontFamily="Inter">🔒</text>
+          <text
+            x="42"
+            y="205"
+            textAnchor="middle"
+            fill="white"
+            fontSize="11"
+            fontFamily="Inter"
+          >
+            🔒
+          </text>
 
           <circle cx="278" cy="210" r="14" fill="url(#rg2)" opacity="0.6" />
-          <text x="278" y="215" textAnchor="middle" fill="white" fontSize="10" fontFamily="Inter">★</text>
+          <text
+            x="278"
+            y="215"
+            textAnchor="middle"
+            fill="white"
+            fontSize="10"
+            fontFamily="Inter"
+          >
+            ★
+          </text>
 
           {/* Corner dots */}
           <circle cx="20" cy="20" r="5" fill="url(#rg1)" opacity="0.5" />
@@ -112,7 +211,14 @@ function RegisterIllustration() {
         </svg>
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 24, position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: 24,
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <h2
           style={{
             fontSize: 22,
@@ -126,8 +232,16 @@ function RegisterIllustration() {
         >
           Join the Community
         </h2>
-        <p style={{ color: "var(--color-text-muted)", fontSize: 13, lineHeight: 1.6 }}>
-          Create your free account and start<br />chatting with people worldwide.
+        <p
+          style={{
+            color: "var(--color-text-muted)",
+            fontSize: 13,
+            lineHeight: 1.6,
+          }}
+        >
+          Create your free account and start
+          <br />
+          chatting with people worldwide.
         </p>
       </div>
     </div>
@@ -149,7 +263,7 @@ function Register() {
   function submitRegister(obj) {
     setLoading(true);
     axios
-      .post("http://localhost:3500/user-api/register", obj)
+      .post("https://orbitchat-38y6.onrender.com/user-api/register", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -212,7 +326,9 @@ function Register() {
               marginBottom: 28,
             }}
           >
-            <div className="logo-mark"><OrbitLogo /></div>
+            <div className="logo-mark">
+              <OrbitLogo />
+            </div>
             <span
               style={{
                 fontWeight: 800,
@@ -290,9 +406,7 @@ function Register() {
                 placeholder="Choose a unique ID"
                 {...register("userid", { required: true })}
               />
-              <div className="form-hint">
-                Used to find and message you
-              </div>
+              <div className="form-hint">Used to find and message you</div>
               {errors.userid && (
                 <div className="form-error">User ID is required</div>
               )}
@@ -432,7 +546,14 @@ function Register() {
               }}
             >
               {loading ? (
-                <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
                   <span
                     style={{
                       width: 16,
@@ -463,7 +584,11 @@ function Register() {
             Already have an account?{" "}
             <NavLink
               to="/login"
-              style={{ color: "#f9a8d4", fontWeight: 600, textDecoration: "none" }}
+              style={{
+                color: "#f9a8d4",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
             >
               Sign in →
             </NavLink>

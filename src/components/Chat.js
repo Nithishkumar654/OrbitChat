@@ -17,7 +17,7 @@ function Chat() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .post("http://localhost:3500/user-api/pathjump", { token })
+      .post("https://orbitchat-38y6.onrender.com/user-api/pathjump", { token })
       .then((res) => {
         if (res.data.success !== true) {
           localStorage.clear();
@@ -27,15 +27,12 @@ function Chat() {
       .catch(() => navigate("/login"));
   }, []);
 
-  const onMouseMove = useCallback(
-    (e) => {
-      if (!isDragging.current) return;
-      const delta = e.clientX - dragStart.current.x;
-      const newW = Math.max(240, Math.min(520, dragStart.current.w + delta));
-      setSidebarWidth(newW);
-    },
-    []
-  );
+  const onMouseMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    const delta = e.clientX - dragStart.current.x;
+    const newW = Math.max(240, Math.min(520, dragStart.current.w + delta));
+    setSidebarWidth(newW);
+  }, []);
 
   const onMouseUp = useCallback(() => {
     isDragging.current = false;
@@ -61,12 +58,17 @@ function Chat() {
     const h = localStorage.getItem("user");
     if (!h) return;
     axios
-      .post("http://localhost:3500/conversation-api/get-conversation-summaries", { host: h })
+      .post(
+        "https://orbitchat-38y6.onrender.com/conversation-api/get-conversation-summaries",
+        { host: h },
+      )
       .then((res) => setSummaries(res.data.summaries))
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => { fetchSummaries(); }, [fetchSummaries]);
+  useEffect(() => {
+    fetchSummaries();
+  }, [fetchSummaries]);
 
   const chatOpen = !!person.userid;
 
@@ -122,7 +124,12 @@ function Chat() {
       <div
         className="chat-panel-responsive"
         data-chat-open={chatOpen ? "true" : "false"}
-        style={{ flex: 1, flexDirection: "column", overflow: "hidden", minWidth: 0 }}
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          overflow: "hidden",
+          minWidth: 0,
+        }}
       >
         {person.userid ? (
           <Conversation

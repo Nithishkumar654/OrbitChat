@@ -8,7 +8,7 @@
   \___/|_|  |_.__/|_|\__|\____|_| |_|\__,_|\__|
 ```
 
-### *Stay in each other's orbit.*
+### _Stay in each other's orbit._
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
@@ -30,20 +30,20 @@ No polling. No refresh. No waiting. Just orbit.
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| **Real-Time Messaging** | Instant delivery via Socket.io WebSockets — zero delay, zero refresh |
-| **File Sharing** | Send PDFs, images, Word docs, ZIPs and more via MongoDB GridFS |
-| **Live Online Status** | See who's available right now with animated presence indicators |
-| **Last Message Preview** | Sidebar shows your most recent message per contact, sorted by recency |
-| **Date Separators** | Chat history grouped by Today / Yesterday / full date |
-| **Message Deletion** | Delete your sent messages in real time — both sides update instantly |
-| **Resizable Sidebar** | Drag the panel divider to your preferred width |
-| **Search Contacts** | Filter your contact list by name or user ID instantly |
-| **OTP Email Verification** | Forgot your password? Verify via a 6-digit OTP sent to your email |
-| **Profile Editing** | Update your display name, email, and profile picture on the fly |
-| **Secure Auth** | Passwords hashed with bcrypt, sessions protected by JWT |
-| **Responsive Design** | Clean mobile layout — sidebar and chat panel adapt to screen size |
+| Feature                    | Description                                                           |
+| -------------------------- | --------------------------------------------------------------------- |
+| **Real-Time Messaging**    | Instant delivery via Socket.io WebSockets — zero delay, zero refresh  |
+| **File Sharing**           | Send PDFs, images, Word docs, ZIPs and more via MongoDB GridFS        |
+| **Live Online Status**     | See who's available right now with animated presence indicators       |
+| **Last Message Preview**   | Sidebar shows your most recent message per contact, sorted by recency |
+| **Date Separators**        | Chat history grouped by Today / Yesterday / full date                 |
+| **Message Deletion**       | Delete your sent messages in real time — both sides update instantly  |
+| **Resizable Sidebar**      | Drag the panel divider to your preferred width                        |
+| **Search Contacts**        | Filter your contact list by name or user ID instantly                 |
+| **OTP Email Verification** | Forgot your password? Verify via a 6-digit OTP sent to your email     |
+| **Profile Editing**        | Update your display name, email, and profile picture on the fly       |
+| **Secure Auth**            | Passwords hashed with bcrypt, sessions protected by JWT               |
+| **Responsive Design**      | Clean mobile layout — sidebar and chat panel adapt to screen size     |
 
 ---
 
@@ -137,7 +137,7 @@ PORT=3500
 npm start
 ```
 
-The server starts on `http://localhost:3500`. Open a second browser tab (or a different browser) to test two-user real-time messaging.
+The server starts on `https://orbitchat-38y6.onrender.com`. Open a second browser tab (or a different browser) to test two-user real-time messaging.
 
 ---
 
@@ -178,24 +178,30 @@ Disconnect → socket.data.username auto-cleans
 db.conversations.aggregate([
   { $match: { $or: [{ senderId: host }, { receiverId: host }] } },
   { $sort: { _id: 1 } },
-  { $group: {
-      _id: { $cond: [{ $lt: ["$senderId","$receiverId"] },
-               { a: "$senderId", b: "$receiverId" },
-               { a: "$receiverId", b: "$senderId" }] },
-      lastMessage: { $last: "$$ROOT" }
-  }}
-])
+  {
+    $group: {
+      _id: {
+        $cond: [
+          { $lt: ["$senderId", "$receiverId"] },
+          { a: "$senderId", b: "$receiverId" },
+          { a: "$receiverId", b: "$senderId" },
+        ],
+      },
+      lastMessage: { $last: "$$ROOT" },
+    },
+  },
+]);
 ```
 
 ---
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm start` | Start dev server with nodemon on port 3500 |
-| `npm run build` | Install deps + production React build |
-| `npm test` | Run test suite |
+| Command         | Description                                |
+| --------------- | ------------------------------------------ |
+| `npm start`     | Start dev server with nodemon on port 3500 |
+| `npm run build` | Install deps + production React build      |
+| `npm test`      | Run test suite                             |
 
 ---
 
@@ -209,6 +215,6 @@ The OrbitChat mark is a custom SVG: a tilted elliptical orbit ring, a central hu
 
 Built with focus, caffeine, and a genuine love for real-time systems.
 
-**OrbitChat** — *Stay in each other's orbit.*
+**OrbitChat** — _Stay in each other's orbit._
 
 </div>

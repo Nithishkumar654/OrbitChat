@@ -20,7 +20,7 @@ function NavigationBar() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .post("http://localhost:3500/user-api/pathjump", { token })
+      .post("https://orbitchat-38y6.onrender.com/user-api/pathjump", { token })
       .then((res) => {
         if (res.data.success !== true) {
           localStorage.clear();
@@ -55,7 +55,9 @@ function NavigationBar() {
             textDecoration: "none",
           }}
         >
-          <div className="logo-mark"><OrbitLogo /></div>
+          <div className="logo-mark">
+            <OrbitLogo />
+          </div>
           <span className="brand-text">OrbitChat</span>
         </NavLink>
 

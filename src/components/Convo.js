@@ -17,8 +17,11 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 import socket from "../socket";
 
 function getDateFromId(id) {
-  try { return new Date(parseInt(id.substring(0, 8), 16) * 1000); }
-  catch { return new Date(); }
+  try {
+    return new Date(parseInt(id.substring(0, 8), 16) * 1000);
+  } catch {
+    return new Date();
+  }
 }
 
 function formatDateLabel(date) {
@@ -30,20 +33,29 @@ function formatDateLabel(date) {
   if (d.getTime() === today.getTime()) return "Today";
   if (d.getTime() === yesterday.getTime()) return "Yesterday";
   return date.toLocaleDateString("en-US", {
-    weekday: "long", month: "long", day: "numeric",
+    weekday: "long",
+    month: "long",
+    day: "numeric",
     ...(date.getFullYear() !== now.getFullYear() && { year: "numeric" }),
   });
 }
 
 function getFileIcon(fileType) {
   const s = { fontSize: 42, flexShrink: 0 };
-  if (fileType === "application/pdf") return <AiFillFilePdf style={{ ...s, color: "#f87171" }} />;
-  if (fileType?.includes("image")) return <AiFillFileImage style={{ ...s, color: "#60a5fa" }} />;
-  if (fileType?.includes("application/vnd")) return <AiFillFileExcel style={{ ...s, color: "#4ade80" }} />;
-  if (fileType?.includes("zip")) return <AiFillFileZip style={{ ...s, color: "#fbbf24" }} />;
-  if (fileType?.includes("text/plain")) return <AiFillFileText style={{ ...s, color: "#94a3b8" }} />;
-  if (fileType?.includes("application/powerpoint")) return <AiFillFilePpt style={{ ...s, color: "#fb923c" }} />;
-  if (fileType?.includes("application/msword")) return <AiFillFileWord style={{ ...s, color: "#60a5fa" }} />;
+  if (fileType === "application/pdf")
+    return <AiFillFilePdf style={{ ...s, color: "#f87171" }} />;
+  if (fileType?.includes("image"))
+    return <AiFillFileImage style={{ ...s, color: "#60a5fa" }} />;
+  if (fileType?.includes("application/vnd"))
+    return <AiFillFileExcel style={{ ...s, color: "#4ade80" }} />;
+  if (fileType?.includes("zip"))
+    return <AiFillFileZip style={{ ...s, color: "#fbbf24" }} />;
+  if (fileType?.includes("text/plain"))
+    return <AiFillFileText style={{ ...s, color: "#94a3b8" }} />;
+  if (fileType?.includes("application/powerpoint"))
+    return <AiFillFilePpt style={{ ...s, color: "#fb923c" }} />;
+  if (fileType?.includes("application/msword"))
+    return <AiFillFileWord style={{ ...s, color: "#60a5fa" }} />;
   return <AiFillFileUnknown style={{ ...s, color: "#94a3b8" }} />;
 }
 
@@ -66,17 +78,20 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
     setHost(localStorage.getItem("user"));
     const hosting = localStorage.getItem("user");
     axios
-      .post("http://localhost:3500/conversation-api/get-messages", {
-        host: hosting,
-        person: person.userid,
-      })
+      .post(
+        "https://orbitchat-38y6.onrender.com/conversation-api/get-messages",
+        {
+          host: hosting,
+          person: person.userid,
+        },
+      )
       .then((response) => {
         setMessages(
           response.data.chat.filter(
             (obj) =>
               obj.message?.toLowerCase().includes(search.toLowerCase()) ||
-              obj.fileName?.toLowerCase().includes(search.toLowerCase())
-          )
+              obj.fileName?.toLowerCase().includes(search.toLowerCase()),
+          ),
         );
         setShow(false);
         setMessage("");
@@ -102,15 +117,19 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
     };
   }, []);
 
-  useEffect(() => { setIsLoaded(true); }, [person]);
-  useEffect(() => { scrollDown(); }, [scroll]);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, [person]);
+  useEffect(() => {
+    scrollDown();
+  }, [scroll]);
 
   const handleDownload = async (obj) => {
     try {
       const response = await axios.post(
-        "http://localhost:3500/conversation-api/download-file",
+        "https://orbitchat-38y6.onrender.com/conversation-api/download-file",
         obj,
-        { responseType: "blob" }
+        { responseType: "blob" },
       );
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
@@ -131,8 +150,8 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
     setShowModal(false);
     axios
       .post(
-        "http://localhost:3500/conversation-api/delete-message",
-        deleteObject
+        "https://orbitchat-38y6.onrender.com/conversation-api/delete-message",
+        deleteObject,
       )
       .then((res) => {
         setMessage(res.data.message);
@@ -158,8 +177,17 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
         }}
       >
         <div style={{ textAlign: "center" }}>
-          <Spinner animation="border" style={{ color: "#7c3aed", width: 36, height: 36 }} />
-          <div style={{ color: "var(--color-text-muted)", fontSize: 13, marginTop: 12 }}>
+          <Spinner
+            animation="border"
+            style={{ color: "#7c3aed", width: 36, height: 36 }}
+          />
+          <div
+            style={{
+              color: "var(--color-text-muted)",
+              fontSize: 13,
+              marginTop: 12,
+            }}
+          >
             Loading messages...
           </div>
         </div>
@@ -201,157 +229,194 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
           messages.map((obj, idx) => {
             const isSent = obj.senderId === host;
             const msgDate = getDateFromId(obj._id);
-            const prevDate = idx > 0 ? getDateFromId(messages[idx - 1]._id) : null;
-            const showSeparator = !prevDate || msgDate.toDateString() !== prevDate.toDateString();
+            const prevDate =
+              idx > 0 ? getDateFromId(messages[idx - 1]._id) : null;
+            const showSeparator =
+              !prevDate || msgDate.toDateString() !== prevDate.toDateString();
             return (
               <React.Fragment key={obj._id || idx}>
                 {showSeparator && (
-                  <div style={{
-                    display: "flex", alignItems: "center", gap: 10,
-                    margin: "12px 16px 4px",
-                  }}>
-                    <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.08)" }} />
-                    <span style={{
-                      fontSize: 11, fontWeight: 600, color: "var(--color-text-muted)",
-                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: 50, padding: "3px 12px", whiteSpace: "nowrap",
-                    }}>
-                      {formatDateLabel(msgDate)}
-                    </span>
-                    <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.08)" }} />
-                  </div>
-                )}
-              <div
-                className={isSent ? "msg-row-sent" : "msg-row-recv"}
-              >
-                {!isSent && (
                   <div
                     style={{
-                      width: 28,
-                      height: 28,
-                      borderRadius: "50%",
-                      background: "linear-gradient(135deg,#7c3aed,#06b6d4)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 11,
-                      fontWeight: 800,
-                      color: "white",
-                      flexShrink: 0,
-                      alignSelf: "flex-end",
-                      marginRight: 6,
+                      gap: 10,
+                      margin: "12px 16px 4px",
                     }}
                   >
-                    {obj.senderId?.charAt(0).toUpperCase()}
+                    <div
+                      style={{
+                        flex: 1,
+                        height: 1,
+                        background: "rgba(255,255,255,0.08)",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        color: "var(--color-text-muted)",
+                        background: "rgba(255,255,255,0.05)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        borderRadius: 50,
+                        padding: "3px 12px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {formatDateLabel(msgDate)}
+                    </span>
+                    <div
+                      style={{
+                        flex: 1,
+                        height: 1,
+                        background: "rgba(255,255,255,0.08)",
+                      }}
+                    />
                   </div>
                 )}
-
-                <div
-                  className={
-                    "msg-bubble " +
-                    (isSent ? "msg-bubble-sent" : "msg-bubble-recv")
-                  }
-                >
-                  {obj.message ? (
-                    <>
-                      <span style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{obj.message}</span>
-                      <span className="msg-time">{obj.time}</span>
-                    </>
-                  ) : (
-                    <div className="file-msg">
-                      <div className="file-icon-wrap">
-                        {getFileIcon(obj.fileType)}
-                        <button
-                          className="dl-btn"
-                          onClick={() => handleDownload(obj)}
-                          title="Download"
-                        >
-                          <IoMdDownload style={{ fontSize: 11 }} />
-                        </button>
-                      </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div
-                          style={{
-                            fontSize: 12,
-                            fontWeight: 600,
-                            color: isSent ? "rgba(255,255,255,0.9)" : "var(--color-text)",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            maxWidth: 140,
-                          }}
-                        >
-                          {obj.fileName}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 10,
-                            color: isSent ? "rgba(255,255,255,0.5)" : "var(--color-text-muted)",
-                            marginTop: 2,
-                          }}
-                        >
-                          {obj.time}
-                        </div>
-                      </div>
+                <div className={isSent ? "msg-row-sent" : "msg-row-recv"}>
+                  {!isSent && (
+                    <div
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: "50%",
+                        background: "linear-gradient(135deg,#7c3aed,#06b6d4)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 11,
+                        fontWeight: 800,
+                        color: "white",
+                        flexShrink: 0,
+                        alignSelf: "flex-end",
+                        marginRight: 6,
+                      }}
+                    >
+                      {obj.senderId?.charAt(0).toUpperCase()}
                     </div>
                   )}
 
-                  {/* Delete dropdown */}
-                  {isSent && (
-                    <div className="dropstart" style={{ position: "absolute", top: 4, right: 4 }}>
-                      <button
-                        className="msg-dropdown-btn dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        style={{
-                          background: "none",
-                          border: "none",
-                          padding: 0,
-                          cursor: "pointer",
-                          color: "rgba(255,255,255,0.6)",
-                          fontSize: 16,
-                          lineHeight: 1,
-                        }}
-                      >
-                        <RiArrowDropDownLine />
-                      </button>
-                      <ul
-                        className="dropdown-menu p-0"
-                        style={{
-                          background: "rgba(10,10,24,0.97)",
-                          border: "1px solid rgba(255,255,255,0.1)",
-                          borderRadius: 10,
-                          minWidth: 110,
-                          overflow: "hidden",
-                        }}
-                      >
-                        <li>
+                  <div
+                    className={
+                      "msg-bubble " +
+                      (isSent ? "msg-bubble-sent" : "msg-bubble-recv")
+                    }
+                  >
+                    {obj.message ? (
+                      <>
+                        <span
+                          style={{
+                            whiteSpace: "pre-wrap",
+                            wordBreak: "break-word",
+                          }}
+                        >
+                          {obj.message}
+                        </span>
+                        <span className="msg-time">{obj.time}</span>
+                      </>
+                    ) : (
+                      <div className="file-msg">
+                        <div className="file-icon-wrap">
+                          {getFileIcon(obj.fileType)}
                           <button
-                            className="dropdown-item"
+                            className="dl-btn"
+                            onClick={() => handleDownload(obj)}
+                            title="Download"
+                          >
+                            <IoMdDownload style={{ fontSize: 11 }} />
+                          </button>
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div
                             style={{
-                              color: "#f87171",
-                              background: "none",
-                              border: "none",
-                              width: "100%",
-                              textAlign: "left",
-                              padding: "10px 14px",
-                              fontSize: 13,
-                              fontWeight: 500,
-                              cursor: "pointer",
-                              fontFamily: "Inter, sans-serif",
-                            }}
-                            onClick={() => {
-                              setShowModal(true);
-                              setDeleteObject(obj);
+                              fontSize: 12,
+                              fontWeight: 600,
+                              color: isSent
+                                ? "rgba(255,255,255,0.9)"
+                                : "var(--color-text)",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              maxWidth: 140,
                             }}
                           >
-                            🗑 Delete
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
+                            {obj.fileName}
+                          </div>
+                          <div
+                            style={{
+                              fontSize: 10,
+                              color: isSent
+                                ? "rgba(255,255,255,0.5)"
+                                : "var(--color-text-muted)",
+                              marginTop: 2,
+                            }}
+                          >
+                            {obj.time}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Delete dropdown */}
+                    {isSent && (
+                      <div
+                        className="dropstart"
+                        style={{ position: "absolute", top: 4, right: 4 }}
+                      >
+                        <button
+                          className="msg-dropdown-btn dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "pointer",
+                            color: "rgba(255,255,255,0.6)",
+                            fontSize: 16,
+                            lineHeight: 1,
+                          }}
+                        >
+                          <RiArrowDropDownLine />
+                        </button>
+                        <ul
+                          className="dropdown-menu p-0"
+                          style={{
+                            background: "rgba(10,10,24,0.97)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            borderRadius: 10,
+                            minWidth: 110,
+                            overflow: "hidden",
+                          }}
+                        >
+                          <li>
+                            <button
+                              className="dropdown-item"
+                              style={{
+                                color: "#f87171",
+                                background: "none",
+                                border: "none",
+                                width: "100%",
+                                textAlign: "left",
+                                padding: "10px 14px",
+                                fontSize: 13,
+                                fontWeight: 500,
+                                cursor: "pointer",
+                                fontFamily: "Inter, sans-serif",
+                              }}
+                              onClick={() => {
+                                setShowModal(true);
+                                setDeleteObject(obj);
+                              }}
+                            >
+                              🗑 Delete
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
               </React.Fragment>
             );
           })
@@ -387,13 +452,24 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
-          style={{ color: "var(--color-text-muted)", fontSize: 14, paddingTop: 4 }}
+          style={{
+            color: "var(--color-text-muted)",
+            fontSize: 14,
+            paddingTop: 4,
+          }}
         >
           {deleteObject.message
             ? `"${deleteObject.message.substring(0, 60)}${deleteObject.message.length > 60 ? "..." : ""}"`
             : deleteObject.fileName}
           <br />
-          <span style={{ fontSize: 12, color: "var(--color-text-muted)", marginTop: 4, display: "block" }}>
+          <span
+            style={{
+              fontSize: 12,
+              color: "var(--color-text-muted)",
+              marginTop: 4,
+              display: "block",
+            }}
+          >
             This action cannot be undone.
           </span>
         </Modal.Body>

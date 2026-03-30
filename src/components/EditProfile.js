@@ -14,7 +14,10 @@ function EditProfile({ show, setShow }) {
     setErr("");
     const updatedProfile = getValues();
     axios
-      .post("http://localhost:3500/user-api/profile-update", updatedProfile)
+      .post(
+        "https://orbitchat-38y6.onrender.com/user-api/profile-update",
+        updatedProfile,
+      )
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -36,7 +39,7 @@ function EditProfile({ show, setShow }) {
   useEffect(() => {
     const host = localStorage.getItem("user");
     axios
-      .get("http://localhost:3500/user-api/get-users")
+      .get("https://orbitchat-38y6.onrender.com/user-api/get-users")
       .then((res) => {
         const user = res.data.users.find((obj) => obj.userid === host);
         if (user) {
@@ -66,7 +69,9 @@ function EditProfile({ show, setShow }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div className="logo-mark" style={{ animation: "none" }}>C</div>
+          <div className="logo-mark" style={{ animation: "none" }}>
+            C
+          </div>
           <span
             style={{
               fontWeight: 700,
@@ -217,7 +222,9 @@ function EditProfile({ show, setShow }) {
               />
               Saving...
             </span>
-          ) : "Save Changes"}
+          ) : (
+            "Save Changes"
+          )}
         </button>
         <button
           onClick={() => setShow(false)}
