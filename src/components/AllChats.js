@@ -26,7 +26,7 @@ function AllChats({
     const currentHost = localStorage.getItem("user");
     setHost(currentHost);
     axios
-      .get("https://orbitchat-38y6.onrender.com/user-api/get-users")
+      .get("https://orbitchat-zawb.onrender.com/user-api/get-users")
       .then((res) => {
         const seen = new Set();
         const contacts = res.data.users.filter((u) => {

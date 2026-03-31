@@ -267,7 +267,7 @@ function Login() {
   function submitLogin(obj) {
     setLoading(true);
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/login", obj)
+      .post("https://orbitchat-zawb.onrender.com/user-api/login", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {

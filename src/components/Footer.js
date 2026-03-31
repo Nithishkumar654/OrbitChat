@@ -50,7 +50,7 @@ function Footer({ person, onMessageSent }) {
     const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/send-message",
+        "https://orbitchat-zawb.onrender.com/conversation-api/send-message",
         {
           message: trimmed,
           senderId: host,
@@ -91,7 +91,7 @@ function Footer({ person, onMessageSent }) {
     fd.append("file", file);
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/send-file",
+        "https://orbitchat-zawb.onrender.com/conversation-api/send-file",
         fd,
       )
       .then(() => {

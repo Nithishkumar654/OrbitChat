@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socket = io("https://orbitchat-38y6.onrender.com");
+const socket = io("https://orbitchat-zawb.onrender.com");
 
 socket.on("connect", () => {
   const user = localStorage.getItem("user");

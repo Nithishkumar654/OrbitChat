@@ -79,7 +79,7 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
     const hosting = localStorage.getItem("user");
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/get-messages",
+        "https://orbitchat-zawb.onrender.com/conversation-api/get-messages",
         {
           host: hosting,
           person: person.userid,
@@ -127,7 +127,7 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
   const handleDownload = async (obj) => {
     try {
       const response = await axios.post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/download-file",
+        "https://orbitchat-zawb.onrender.com/conversation-api/download-file",
         obj,
         { responseType: "blob" },
       );
@@ -150,7 +150,7 @@ function Convo({ person, setShow, setMessage, search, refreshKey }) {
     setShowModal(false);
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/delete-message",
+        "https://orbitchat-zawb.onrender.com/conversation-api/delete-message",
         deleteObject,
       )
       .then((res) => {

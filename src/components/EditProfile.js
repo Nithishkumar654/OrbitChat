@@ -15,7 +15,7 @@ function EditProfile({ show, setShow }) {
     const updatedProfile = getValues();
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/user-api/profile-update",
+        "https://orbitchat-zawb.onrender.com/user-api/profile-update",
         updatedProfile,
       )
       .then((res) => {
@@ -39,7 +39,7 @@ function EditProfile({ show, setShow }) {
   useEffect(() => {
     const host = localStorage.getItem("user");
     axios
-      .get("https://orbitchat-38y6.onrender.com/user-api/get-users")
+      .get("https://orbitchat-zawb.onrender.com/user-api/get-users")
       .then((res) => {
         const user = res.data.users.find((obj) => obj.userid === host);
         if (user) {

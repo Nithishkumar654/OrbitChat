@@ -263,7 +263,7 @@ function Register() {
   function submitRegister(obj) {
     setLoading(true);
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/register", obj)
+      .post("https://orbitchat-zawb.onrender.com/user-api/register", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {

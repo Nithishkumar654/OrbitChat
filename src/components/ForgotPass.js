@@ -22,7 +22,7 @@ function ForgotPass() {
     setErr("");
     setUser(obj.userid);
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/sendemail", obj)
+      .post("https://orbitchat-zawb.onrender.com/user-api/sendemail", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -48,7 +48,7 @@ function ForgotPass() {
     obj.token = localStorage.getItem("otpToken");
     obj.hashedOtp = localStorage.getItem("hashedOtp");
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/verifyotp", obj)
+      .post("https://orbitchat-zawb.onrender.com/user-api/verifyotp", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {
@@ -70,7 +70,7 @@ function ForgotPass() {
     setErr("");
     obj.userid = user;
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/update-password", obj)
+      .post("https://orbitchat-zawb.onrender.com/user-api/update-password", obj)
       .then((res) => {
         setLoading(false);
         if (res.data.success === true) {

@@ -17,7 +17,7 @@ function Chat() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/pathjump", { token })
+      .post("https://orbitchat-zawb.onrender.com/user-api/pathjump", { token })
       .then((res) => {
         if (res.data.success !== true) {
           localStorage.clear();
@@ -59,7 +59,7 @@ function Chat() {
     if (!h) return;
     axios
       .post(
-        "https://orbitchat-38y6.onrender.com/conversation-api/get-conversation-summaries",
+        "https://orbitchat-zawb.onrender.com/conversation-api/get-conversation-summaries",
         { host: h },
       )
       .then((res) => setSummaries(res.data.summaries))

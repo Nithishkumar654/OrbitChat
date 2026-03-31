@@ -20,7 +20,7 @@ function NavigationBar() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .post("https://orbitchat-38y6.onrender.com/user-api/pathjump", { token })
+      .post("https://orbitchat-zawb.onrender.com/user-api/pathjump", { token })
       .then((res) => {
         if (res.data.success !== true) {
           localStorage.clear();
