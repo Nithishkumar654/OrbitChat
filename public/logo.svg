@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7c3aed"/>
@@ -7,22 +7,23 @@
   </defs>
 
   <!-- Rounded square background -->
-  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="115" fill="url(#bg)"/>
 
+  <!-- OrbitLogo paths scaled from 20x20 viewBox to 512x512 (scale=25.6, offset=0) -->
   <!-- Orbit ring -->
   <ellipse
-    cx="32" cy="32"
-    rx="21" ry="10"
-    stroke="white" stroke-width="2.4" fill="none" opacity="0.78"
-    transform="rotate(-30 32 32)"
+    cx="256" cy="256"
+    rx="199.68" ry="92.16"
+    stroke="white" stroke-width="32" fill="none" opacity="0.78"
+    transform="rotate(-30 256 256)"
   />
 
   <!-- Central hub -->
-  <circle cx="32" cy="32" r="5.5" fill="white"/>
+  <circle cx="256" cy="256" r="56.32" fill="white"/>
 
   <!-- Satellite / chat node -->
-  <circle cx="40.5" cy="19" r="5" fill="white" opacity="0.95"/>
+  <circle cx="343.04" cy="138.24" r="48.64" fill="white" opacity="0.95"/>
 
   <!-- Trailing dot -->
-  <circle cx="49.5" cy="25.5" r="2.2" fill="white" opacity="0.45"/>
+  <circle cx="417.28" cy="207.36" r="21.76" fill="white" opacity="0.45"/>
 </svg>
